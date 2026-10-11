@@ -1,0 +1,6 @@
+.idea/
+.vscode/
+**/quarkdown-output/
+
+__test.qd
+.DS_Store

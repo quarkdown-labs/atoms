@@ -1,0 +1,36 @@
+.css 
+    .kanban { --qd-paragraph-vertical-margin: 0 }
+
+.function {kanban}
+    fontsize? content:
+    .container fullwidth:{yes} fontsize:{.fontsize} classname:{kanban}
+        .row gap:{1.5em} cross:{start}
+            .content
+
+.function {kbcolumn}
+    text width? color? content:
+    .column cross:{start} gap:{0.5em}
+        .container width:{.width::otherwise {10em}} \
+                   margin:{0 0 0.5em 0} border:{.color} borderwidth:{0 0 2px 0}
+            **.text**
+        .content
+
+.var {kblabels}
+    - high: red
+    - medium: yellow
+    - low: green
+
+.function {kbitem} 
+    text color? labels?:
+    .container width:{80%} padding:{0.75em 1em} \
+               border:{.color::otherwise {lightgray}} borderwidth:{1px} radius:{6px}
+        .text
+
+        .ifnot {.labels::isnone}
+            .container margin:{0.25em 0 0 0}
+                .row gap:{0.5em}
+                    .labels::foreach
+                        label:
+                        .container background:{.kblabels::get {.label::lowercase}::otherwise {lightgray}} \
+                                   padding:{0.2em 0.5em} radius:{2px} fontsize:{small}
+                            .label
