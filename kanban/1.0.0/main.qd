@@ -1,5 +1,9 @@
 .css 
-    .kanban { --qd-paragraph-vertical-margin: 0 }
+    .kanban {
+        --qd-paragraph-vertical-margin: 0;
+        --qd-horizontal-alignment-global: start;
+        --qd-horizontal-alignment-local: start;
+    }
 
 .function {kanban}
     fontsize? content:
