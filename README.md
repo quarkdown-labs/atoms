@@ -49,6 +49,9 @@ __tests/
 
 From a test case's `main.qd`, the package's main file can be included with a relative path: `.include {../../main.qd}`.
 
+- To run all test cases in the repository, execute `scripts/test.sh` from the root of the repository.
+- To run a specific test case, pass its path to the script, e.g. `scripts/test.sh my-package/1.0.0/__tests/my-test-case`.
+
 ## Updating a package
 
 This repository strictly enforces frozen versions of packages. In order to update a package, a new version must be created.
