@@ -8,5 +8,5 @@ description = "A simple CV template."
 categories = ["cv"]
 
 [template]
-file = "template.qd"
+content = "template.qd"
 doctype = "paged"
