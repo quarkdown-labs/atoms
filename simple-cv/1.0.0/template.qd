@@ -1,3 +1,5 @@
 .var {cvdata}
     - name: John Doe
     - email: john@example.com
+
+.cv {.cvdata}

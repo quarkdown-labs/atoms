@@ -1,4 +1,5 @@
 .function {cv}
-    # .cvdata::get {name}
+    data:
+    # .data::get {name}
 
-    .cvdata::get {email}
+    # .data::get {email}
