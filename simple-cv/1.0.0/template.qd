@@ -1,12 +1,15 @@
+.include {main.qd}
+.doctype {paged}
+
+.extend {link}
+    .super foreground:{midnightblue}
+
 .extend {heading}
     .super foreground:{midnightblue}
 
 .extend {heading} where:{depth: .depth::equals {2}}
-    .super fontvariant:{smallcaps} fontsize:{large} \
+    .super fontvariant:{smallcaps} \
            border:{gray} borderwidth:{0 0 1px 0}
-
-.extend {link}
-    .super foreground:{midnightblue}
 
 # John Doe
 

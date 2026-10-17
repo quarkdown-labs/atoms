@@ -2,13 +2,15 @@
     - block-margin: 0
     - paragraph-vertical-margin: 0
 
-.css
-    h1 { margin: 0 }
-    h2 { margin: 1em 0 0.25em 0 }
-
 .font size:{12px}
 .pageformat margin:{0.5in}
 .nonumbering
+
+.extend {heading} where:{depth: .depth::equals {1}}
+    .super margin:{0}
+
+.extend {heading} where:{depth: .depth::equals {2}}
+    .super margin:{1em 0 0.25em 0} fontsize:{large}
 
 .function {contactinfo}
     content:
