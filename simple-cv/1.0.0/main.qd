@@ -1,5 +1,55 @@
-.function {cv}
-    data:
-    # .data::get {name}
+.cssproperties
+    - block-margin: 0
+    - paragraph-vertical-margin: 0
 
-    # .data::get {email}
+.css
+    h1 { margin: 0 }
+    h2 { margin: 1em 0 0.25em 0 }
+
+.font size:{12px}
+.pageformat margin:{0.5in}
+.nonumbering
+
+.function {contactinfo}
+    content:
+    .row gap:{1em}
+        .content::foreach
+            .1::text size:{small}
+
+.function {INTERNALentrygrid}
+    tl? tr? bl? br? content?:
+    .whitespace height:{0.5em}
+
+    .row alignment:{spacebetween}
+        .ifnot {.tl::isnone} {.tl}
+
+        .ifnot {.tr::isnone} {.tr}
+
+    .row alignment:{spacebetween}
+        .ifnot {.bl::isnone} {.bl}
+
+        .ifnot {.br::isnone} {.br}
+    
+    .ifnot {.content::isnone} 
+        .content    
+
+.function {edu}
+    institution degree dates location content?:
+    .INTERNALentrygrid tl:{**.institution**} \
+                       tr:{*.location*} \
+                       bl:{*.degree*} \
+                       br:{.dates} \
+                       content:{.content}
+.function {work}
+    title dates company location content?:
+    .INTERNALentrygrid tl:{**.title**} \
+                       tr:{.dates} \
+                       bl:{.company} \
+                       br:{*.location*} \
+                       content:{.content}
+
+.function {project}
+    name role? dates content?:
+    .INTERNALentrygrid tl:{.role::ifpresent {**.1,**}::otherwise {} .name} \
+                       tr:{.dates} \
+                       content:{.content}
