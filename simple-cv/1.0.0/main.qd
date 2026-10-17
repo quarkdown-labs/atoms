@@ -1,3 +1,4 @@
-# .cvdata::get {name}
+.function {cv}
+    # .cvdata::get {name}
 
-.cvdata::get {email}
+    .cvdata::get {email}
