@@ -17,7 +17,7 @@
 
 .function {kbcolumn}
     text width? color? content:
-    .column cross:{stretch} gap:{0.5em} width:{.width::otherwise {11em}} 
+    .column cross:{stretch} gap:{0.5em} width:{.width::otherwise {12em}} 
         .container margin:{0 0 0.5em 0} border:{.color} borderwidth:{0 0 2px 0}
             **.text**
         .content
