@@ -5,6 +5,10 @@
         --qd-horizontal-alignment-local: start;
     }
 
+.function {INTERNALalphaadjust}
+    base alpha:
+    .base::color alpha:{.alpha}
+
 .function {kanban}
     fontsize? content:
     .container fullwidth:{yes} fontsize:{.fontsize} classname:{kanban}
@@ -35,6 +39,6 @@
                 .row gap:{0.5em}
                     .labels::foreach
                         label:
-                        .container background:{.kblabels::get {.label::lowercase}::otherwise {lightgray}} \
+                        .container background:{.kblabels::get {.label::lowercase}::otherwise {lightgray}::INTERNALalphaadjust {0.25}} \
                                    padding:{0.2em 0.5em} radius:{2px} fontsize:{small}
                             .label
