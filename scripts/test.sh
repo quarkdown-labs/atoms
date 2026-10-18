@@ -5,8 +5,9 @@
 #   - main.qd      the document to compile
 #   - expect.html  the expected HTML output
 #
-# Usage: scripts/test.sh [test-dir...]
-# With no arguments, all test cases in the repository are run.
+# Usage: scripts/test.sh [--print-only] [test-dir...]
+# With no test directories given, all test cases in the repository are run.
+# With --print-only, the compiled output of each case is printed instead of being tested.
 
 set -uo pipefail
 
@@ -36,11 +37,18 @@ normalize() {
     "${TIDY[@]}" || [[ $? -eq 1 ]]
 }
 
+# Compiles the test case in the given directory, printing the result to stdout.
+compile() {
+    local dir="$1"
+    local name="${dir#"$ROOT"/}"
+    (cd "$dir" && "${COMPILE[@]}") || { echo "::error::$name: compilation failed"; return 1; }
+}
+
 run_test() {
     local dir="$1"
     local name="${dir#"$ROOT"/}"
     local actual
-    actual="$(cd "$dir" && "${COMPILE[@]}")" || { echo "::error::$name: compilation failed"; return 1; }
+    actual="$(compile "$dir")" || return 1
 
     if diff_output="$(diff -u <(normalize < "$dir/expect.html") <(normalize <<< "$actual"))"; then
         echo "PASS $name"
@@ -51,8 +59,20 @@ run_test() {
     fi
 }
 
+print_test() {
+    local dir="$1"
+    echo "=== ${dir#"$ROOT"/}"
+    compile "$dir"
+}
+
 main() {
-    require_tidy
+    local runner=run_test
+    if [[ ${1:-} == --print-only ]]; then
+        runner=print_test
+        shift
+    else
+        require_tidy
+    fi
 
     local tests=() test
     if [[ $# -gt 0 ]]; then
@@ -63,7 +83,7 @@ main() {
 
     local failed=0
     for test in "${tests[@]}"; do
-        run_test "$test" || failed=$((failed + 1))
+        "$runner" "$test" || failed=$((failed + 1))
     done
 
     echo "${#tests[@]} run, $failed failed"
