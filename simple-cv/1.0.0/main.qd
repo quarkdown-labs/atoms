@@ -1,16 +1,19 @@
 .cssproperties
     - block-margin: 0
-    - paragraph-vertical-margin: 0
 
-.font size:{12px}
+.css 
+    .entrygrid + .entrygrid { margin-top: 0.35em }
+
 .pageformat margin:{0.5in}
+.font size:{12px}
+.paragraphstyle spacing:{0}
 .nonumbering
 
 .extend {heading} where:{depth: .depth::equals {1}}
     .super margin:{0}
 
 .extend {heading} where:{depth: .depth::equals {2}}
-    .super margin:{1em 0 0.25em 0} fontsize:{large}
+    .super margin:{1em 0 0.5em 0} fontsize:{large}
 
 .function {contactinfo}
     content:
@@ -20,20 +23,19 @@
 
 .function {INTERNALentrygrid}
     tl? tr? bl? br? content?:
-    .whitespace height:{0.5em}
+    .container fullwidth:{yes} classname:{entrygrid}
+        .row alignment:{spacebetween}
+            .ifnot {.tl::isnone} {.tl}
 
-    .row alignment:{spacebetween}
-        .ifnot {.tl::isnone} {.tl}
+            .ifnot {.tr::isnone} {.tr}
 
-        .ifnot {.tr::isnone} {.tr}
+        .row alignment:{spacebetween}
+            .ifnot {.bl::isnone} {.bl}
 
-    .row alignment:{spacebetween}
-        .ifnot {.bl::isnone} {.bl}
-
-        .ifnot {.br::isnone} {.br}
+            .ifnot {.br::isnone} {.br}
     
-    .ifnot {.content::isnone} 
-        .content    
+        .ifnot {.content::isnone} 
+            .content    
 
 .function {edu}
     institution degree dates location content?:

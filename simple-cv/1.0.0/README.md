@@ -31,6 +31,7 @@ A simple CV template.
     - Contributed to the development of an open-source library for data visualization
 
 ## Skills
+
 - **Programming Languages:** Python, JavaScript, C++
 - **Technologies:** React, Node.js, Docker, Git
 ```
