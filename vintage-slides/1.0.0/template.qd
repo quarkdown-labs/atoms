@@ -1,0 +1,23 @@
+# .docname
+
+A classy Quarkdown slides template.
+
+.whitespace
+
+.row gap:{1.5em}
+    [.icon {github}](https://github.com/iamgio/quarkdown)
+
+    [.icon {twitter-x}](https://twitter.com/iiamgio)
+
+## First slide
+
+Welcome to Quarkdown! Replace this text with your content, or explore the [documentation](https://quarkdown.com/docs).
+
+![A cat](https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Cat_in_tree03.jpg/500px-Cat_in_tree03.jpg)
+
+### Second slide
+
+.row gap:{1.5em}
+    .loremipsum
+
+    !(100em)[A cat](https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Cat_in_tree03.jpg/500px-Cat_in_tree03.jpg)

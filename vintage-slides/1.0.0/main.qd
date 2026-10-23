@@ -1,0 +1,46 @@
+.theme {paperwhite} layout:{hyperlegible}
+.pageformat background:{#F4F2ED} alignment:{start}
+.font {fonts/DMSans.ttf} heading:{fonts/PlayfairDisplay.ttf}
+.autopagebreak {3}
+
+.extend {heading} where:{depth: .depth::equals {1}}
+    .super fontsize:{huge}
+
+.cssproperties
+    - main-color: #3D3935
+    - link-color: #605545
+
+.css 
+    .slides {
+        border-top: 3px solid var(--qd-main-color);
+        border-bottom: 3px solid var(--qd-main-color);
+        box-sizing: border-box;
+        position: relative;
+    }
+    .reveal {
+        transform: scale(0.75);
+    }
+    .progress {
+        display: none;
+    }
+    .reveal .slides section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    h1 {
+        margin-top: auto;
+    }
+    h2, h3 {
+        margin-top: 1rem;
+        margin-bottom: auto;
+    }
+    section:has(h1, h2, h3) > :last-child {
+        margin-bottom: auto;
+    }
+    section:has(h1, h2) {
+        --qd-horizontal-alignment-global: center;
+    }
+    a {
+        font-weight: bold;
+    }
