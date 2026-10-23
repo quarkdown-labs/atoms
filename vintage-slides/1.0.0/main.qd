@@ -15,7 +15,9 @@
         border-top: 3px solid var(--qd-main-color);
         border-bottom: 3px solid var(--qd-main-color);
         box-sizing: border-box;
-        position: relative;
+    }
+    .reveal {
+        transform: scale(0.75);
     }
     .progress {
         display: none;
