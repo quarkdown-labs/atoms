@@ -17,9 +17,6 @@
         box-sizing: border-box;
         position: relative;
     }
-    .reveal {
-        transform: scale(0.75);
-    }
     .progress {
         display: none;
     }
