@@ -11,13 +11,21 @@
     - link-color: #605545
 
 .css 
-    .slides {
+    :root {
+        --slide-scale: 0.75;
+    }
+    html:not(.reveal-print) .slides,
+    html.reveal-print .pdf-page > section {
         border-top: 3px solid var(--qd-main-color);
         border-bottom: 3px solid var(--qd-main-color);
         box-sizing: border-box;
     }
-    .reveal {
-        transform: scale(0.75);
+    html:not(.reveal-print) .reveal {
+        transform: scale(var(--slide-scale));
+    }
+    html.reveal-print .reveal .slides .pdf-page > section {
+        display: flex !important;
+        transform: scale(var(--slide-scale)) !important;
     }
     .progress {
         display: none;
@@ -39,6 +47,7 @@
     }
     section:has(h1, h2) {
         --qd-horizontal-alignment-global: center;
+        text-align: var(--qd-horizontal-alignment-global);
     }
     a {
         font-weight: bold;
