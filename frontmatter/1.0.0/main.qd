@@ -1,0 +1,34 @@
+.css
+    .authors-metadata :not(:first-child) {
+        --qd-paragraph-vertical-margin: 0.2em;
+    }
+
+.function {frontmatter}
+    layout? fontsize? fontweight? ids:
+    .var {autoLayoutThreshold} {5}
+
+    .var {info}
+        .docauthors::foreach
+            author info:
+            .var {entryIDs} {.info::get {ids}::ifpresent {.1::split}}
+            .var {frontmatterentries} {.ids::dictionary::withindices::findall {index entry: .entryIDs::contains {.entry::first}}}
+        
+            {.author}{.frontmatterentries::join separator:{,} body:{.1::first}::text script:{sup} size:{small} weight:{normal}}
+    
+    .container fontsize:{.fontsize} fontweight:{.fontweight} fullwidth:{yes}
+        .info::join
+
+    .container classname:{authors-metadata}
+        .var {items}
+            .ids::dictionary::withindices::foreach
+                index entry:
+                {.text {.index} script:{sup}}{.entry::second}
+        
+        .var {layoutname} {.layout}
+        .if {.layout::isnone::or {.layout::equals {auto}}}
+            .layoutname {.items::takeif {.1::size::isgreater than:{.autoLayoutThreshold}}::ifpresent {stack}::otherwise fallback:{inline}}
+        
+        .if {.layoutname::equals {inline}}
+            .items::join
+        .if {.layoutname::equals {stack}}
+            .items

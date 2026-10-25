@@ -1,0 +1,12 @@
+.docauthors
+    - Jane Doe
+      - ids: quarkdown, usfca
+    - John Smith
+    - Alice Johnson
+      - ids: quarkdown
+
+.include {../../main.qd}
+
+.frontmatter layout:{auto}
+    - quarkdown: Quarkdown Labs
+    - usfca: University of San Francisco

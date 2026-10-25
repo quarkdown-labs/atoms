@@ -1,0 +1,8 @@
+[atom]
+name = "frontmatter"
+version = "1.0.0"
+entrypoint = "main.qd"
+authors = [ "Quarkdown <https://quarkdown.com>" ]
+license = "Apache-2.0"
+description = "Display frontmatter for publications, with authors and affiliations."
+categories = ["paper"]
