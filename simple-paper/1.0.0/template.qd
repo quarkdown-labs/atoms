@@ -1,8 +1,3 @@
-.metadataIDs
-    .dictionary 
-        - quarkdown: Quarkdown Labs
-        - usfca: University of San Francisco
-
 .pagemargin {topinside}
     My institution
 
@@ -19,7 +14,9 @@
 
 .docdescription::text size:{medium}
 
-.authorsinfo fontsize:{medium}
+.authorblock fontsize:{medium}
+    - quarkdown: Quarkdown Labs
+    - usfca: University of San Francisco
 
 January 1, 2020
 
@@ -44,3 +41,9 @@ January 1, 2020
 .loremipsum
 
 ## Versatility
+
+.loremipsum
+
+## Extensibility
+
+.loremipsum

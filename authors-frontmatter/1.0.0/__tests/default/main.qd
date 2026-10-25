@@ -7,6 +7,6 @@
 
 .include {../../main.qd}
 
-.frontmatter fontsize:{large} fontweight:{bold}
+.authorblock
     - quarkdown: Quarkdown Labs
     - usfca: University of San Francisco

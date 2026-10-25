@@ -4,13 +4,14 @@
     - John Smith
       - ids: d, e
     - Alice Johnson
-      - ids: e
+      - ids: f
 
 .include {../../main.qd}
 
-.frontmatter
+.authorblock
     - a: Quarkdown Labs
     - b: University of San Francisco
     - c: Massachusetts Institute of Technology
     - d: Stanford University
     - e: ETH Zurich
+    - f: University of Oxford

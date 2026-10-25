@@ -3,7 +3,7 @@
         --qd-paragraph-vertical-margin: 0.2em;
     }
 
-.function {frontmatter}
+.function {authorblock}
     layout? fontsize? fontweight? ids:
     .var {autoLayoutThreshold} {5}
 

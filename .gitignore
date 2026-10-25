@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 **/quarkdown-output/
+**/@atoms/
 
 __test.qd
 .DS_Store

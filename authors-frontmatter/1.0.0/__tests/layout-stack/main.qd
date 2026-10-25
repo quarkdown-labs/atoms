@@ -7,6 +7,6 @@
 
 .include {../../main.qd}
 
-.frontmatter layout:{auto}
+.authorblock layout:{stack}
     - quarkdown: Quarkdown Labs
     - usfca: University of San Francisco

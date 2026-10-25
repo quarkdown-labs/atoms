@@ -1,6 +1,6 @@
-# frontmatter
+# authors-frontmatter
 
-A package for compactly displaying a frontmatter for publications, with authors and affiliations.
+A package for compactly displaying authors and affiliations of a frontmatter for publications.
 
 ## Getting started
 
@@ -16,17 +16,17 @@ This code is conventionally put at the top of your document, before imports and 
       - ids: quarkdown
 ```
 
-Call `.frontmatter` where your frontmatter should appear, with the affiliation IDs associated with their full names.
+Call `.authorblock` where your frontmatter should appear, with the affiliation IDs associated with their full names.
 
 ```
-.frontmatter
+.authorblock
     - quarkdown: Quarkdown Labs
     - usfca: University of San Francisco
 ```
 
 ## Configuration
 
-The `.frontmatter` function takes the following optional parameters:
+The `.authorblock` function takes the following optional parameters:
 
 #### `layout` (`inline`, `stack`, `auto`)
 
