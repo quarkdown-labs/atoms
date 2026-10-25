@@ -1,0 +1,12 @@
+[atom]
+name = "simple-paper"
+version = "1.0.0"
+entrypoint = "main.qd"
+authors = [ "Quarkdown <https://quarkdown.com>" ]
+license = "Apache-2.0"
+description = "A simple paper template."
+categories = ["paper"]
+
+[template]
+content = "template.qd"
+doctype = "paged"

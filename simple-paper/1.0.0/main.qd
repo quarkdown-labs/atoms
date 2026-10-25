@@ -1,0 +1,40 @@
+.pageformat margin:{25mm} padding:{2.25em 0} bordercolor:{lightgray} bordertop:{1px} borderbottom:{1px}
+.pageformat pages:{1..1} bordertop:{0} borderbottom:{1px}
+
+.extend {heading} where:{ref: .ref::equals {title}}
+    .super fontsize:{huge} padding:{1em 0 0 0}
+
+.cssproperties
+    - link-color: inherit
+
+.css
+    .authors-metadata {
+        margin-top: 1em;
+        --qd-paragraph-vertical-margin: 0.2em;
+    }
+
+    [data-page-number="1"] :is(.page-margin-top-left, .page-margin-top-center, .page-margin-top-right) {
+        font-size: var(--qd-size-medium);
+        transform: translateY(1em);
+    }
+
+.var {metadataIDs}
+    .emptydictionary
+
+.function {authorsinfo}
+    fontsize?:
+    .var {info}
+        .docauthors::foreach
+            author info:
+            .var {ids} {.info::get {ids}::ifpresent {.1::split}}
+            .var {metadataentries} {.metadataIDs::withindices::findall {index entry: .ids::contains {.entry::first}}}
+        
+            {.author}{.metadataentries::join separator:{,} body:{.1::first}::text script:{sup}}
+    
+    .container fontsize:{.fontsize} fullwidth:{yes}
+        .info::join
+    
+    .container classname:{authors-metadata}
+        .metadataIDs::withindices::foreach
+            index entry:
+            {.text {.index} script:{sup}}{.entry::second}

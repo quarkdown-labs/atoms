@@ -1,0 +1,46 @@
+.metadataIDs
+    .dictionary 
+        - quarkdown: Quarkdown Labs
+        - usfca: University of San Francisco
+
+.pagemargin {topinside}
+    My institution
+
+.pagemargin {topoutside}
+    .lastheading {1}
+
+.pagemargin {bottominside}
+    .docname
+
+.pagemargin {bottomoutside}
+    .currentpage
+
+#! .docname {#title}
+
+.docdescription::text size:{medium}
+
+.authorsinfo fontsize:{medium}
+
+January 1, 2020
+
+###! Abstract
+
+.loremipsum
+
+*Keywords:* .dockeywords::join
+
+.tableofcontents title:{Contents}
+
+# Introduction
+
+.loremipsum
+
+# Design principles
+
+.loremipsum
+
+## Simplicity
+
+.loremipsum
+
+## Versatility
