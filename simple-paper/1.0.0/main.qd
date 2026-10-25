@@ -10,8 +10,15 @@
     - link-color: inherit
 
 .css
-    [data-page-number="1"] :is(.page-margin-top-left, .page-margin-top-center, .page-margin-top-right) {
+    [data-page-number="1"] :is(.page-margin-top-left, .page-margin-top-right) {
         font-size: var(--qd-size-medium);
         transform: translateY(1em);
     }
 
+    .pagedjs_margin-top {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pagedjs_margin-top-center {
+        display: none;
+    }

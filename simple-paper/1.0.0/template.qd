@@ -1,5 +1,5 @@
 .pagemargin {topinside}
-    My institution
+    University of San Francisco
 
 .pagemargin {topoutside}
     .lastheading {1}
@@ -15,8 +15,6 @@
 .docdescription::text size:{medium}
 
 .authorblock fontsize:{medium}
-    - quarkdown: Quarkdown Labs
-    - usfca: University of San Francisco
 
 January 1, 2020
 
