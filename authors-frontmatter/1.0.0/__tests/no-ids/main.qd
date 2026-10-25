@@ -1,0 +1,10 @@
+.docauthors
+    - Jane Doe
+      - ids: quarkdown, usfca
+    - John Smith
+    - Alice Johnson
+      - ids: quarkdown
+
+.include {../../main.qd}
+
+.authorblock
