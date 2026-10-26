@@ -12,7 +12,7 @@
 
 .css 
     :root {
-        --slide-scale: 0.75;
+        --vintage-slide-scale: 0.75;
     }
     html:not(.reveal-print) .slides,
     html.reveal-print .pdf-page > section {
@@ -21,11 +21,11 @@
         box-sizing: border-box;
     }
     html:not(.reveal-print) .reveal {
-        transform: scale(var(--slide-scale));
+        transform: scale(var(--vintage-slide-scale));
     }
     html.reveal-print .reveal .slides .pdf-page > section {
         display: flex !important;
-        transform: scale(var(--slide-scale)) !important;
+        transform: scale(var(--vintage-slide-scale)) !important;
     }
     .progress {
         display: none;
