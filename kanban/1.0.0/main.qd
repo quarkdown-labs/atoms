@@ -10,7 +10,13 @@
     .base::color alpha:{.alpha}
 
 .function {kanban}
-    fontsize? rowgap? content:
+    fontsize? rowgap? labels? content:
+    .var {kblabels}
+        .labels::otherwise {
+            - high: red
+            - medium: yellow
+            - low: green
+        }
     .container fullwidth:{yes} fontsize:{.fontsize} classname:{kanban}
         .row gap:{.rowgap::otherwise {1.5em}} cross:{start}
             .content
@@ -21,11 +27,6 @@
         .container margin:{0 0 0.5em 0} border:{.color} borderwidth:{0 0 2px 0}
             **.text**
         .content
-
-.var {kblabels}
-    - high: red
-    - medium: yellow
-    - low: green
 
 .function {kbitem} 
     text color? labels?:

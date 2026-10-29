@@ -1,0 +1,11 @@
+.include {../../main.qd}
+
+.var {labels}
+    - high: blue
+    - y: orange
+
+.kanban fontsize:{small} labels:{.labels}
+    .kbcolumn {To do}
+        .kbitem {Authentication} labels:{- high}
+        .kbitem {Update documentation}
+        .kbitem {Implement search} labels:{- y}
