@@ -18,9 +18,7 @@ For more information about Quarkdown packages, see [wiki/Packages](https://quark
 3. Add your package as `name/version` folder, e.g. `my-package/1.0.0`.
 4. It's recommended to have at least one test case in your  `__tests` folder. See the [Testing](#testing) section for details.
 5. Add a `README.md` file
-6. Add a `THUMBNAIL.webp` (preferred) or `THUMBNAIL.png` file:
-   - If you're publishing a template, a preview of the template: ideally 794×1123 (an A4 page) for `paged` and `plain` documents, 1123×705 for `slides` and `docs`.
-   - Optionally, for any other package: a 2:1 banner, ideally 800×400.
+6. Add a `THUMBNAIL.webp` file. It's required for templates and optional for other packages. See the [Thumbnails](#thumbnails) section for details.
 7. Open a pull request to this repository, following the PR template.
 8. Once merged, your package will be available to all Quarkdown users.
 
@@ -36,6 +34,21 @@ my-package/
         README.md
         THUMBNAIL.webp
 ```
+
+### Thumbnails
+
+A thumbnail is a `THUMBNAIL.webp` (preferred) or `THUMBNAIL.png` file in the package folder.
+
+- For a template, it's a preview of the template: ideally 794×1123 (an A4 page) for `paged` and `plain` documents, and 1123×705 for `slides` and `docs`.
+- For any other package, it's optional: a 2:1 banner, ideally 800×400.
+
+To generate it, run `scripts/images/generate.sh` with a demo document.
+
+```
+scripts/images/generate.sh my-package/1.0.0 demo.qd
+```
+
+If you use Claude Code, the [`generating-package-images`](.claude/skills/generating-package-images/SKILL.md) skill can also write the demo and run the script for you.
 
 ## Testing
 
@@ -66,3 +79,9 @@ If you want to update `my-package` from version `1.0.0` to `1.1.0`, create a new
 The only case where a package can be updated in place is for:
 - Updates to `README.md` or a `THUMBNAIL` file.
 - New test cases in the `__tests` folder.
+
+## Deleting or renaming a package
+
+Published packages can't be deleted or renamed.
+
+The only exception is a severe reason, such as malicious code, a security issue, or a license or legal violation. In that case, please contact us privately in advance.
