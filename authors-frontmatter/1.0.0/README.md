@@ -2,6 +2,8 @@
 
 A package for compactly displaying authors and affiliations of a frontmatter for publications.
 
+![Authors and affiliations](https://github.com/quarkdown-labs/atoms/blob/main/authors-frontmatter/1.0.0/__images/preview.png?raw=true)
+
 ## Getting started
 
 In `.docauthors`, add the authors and their affiliation IDs.

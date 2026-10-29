@@ -18,7 +18,9 @@ For more information about Quarkdown packages, see [wiki/Packages](https://quark
 3. Add your package as `name/version` folder, e.g. `my-package/1.0.0`.
 4. It's recommended to have at least one test case in your  `__tests` folder. See the [Testing](#testing) section for details.
 5. Add a `README.md` file
-6. If you're publishing a template, add a `THUMBNAIL.webp` or `THUMBNAIL.png` file that shows a preview of the template.
+6. Add a `THUMBNAIL.webp` (preferred) or `THUMBNAIL.png` file:
+   - If you're publishing a template, a preview of the template: ideally 794×1123 (an A4 page) for `paged` and `plain` documents, 1123×705 for `slides` and `docs`.
+   - Optionally, for any other package: a 2:1 banner, ideally 800×400.
 7. Open a pull request to this repository, following the PR template.
 8. Once merged, your package will be available to all Quarkdown users.
 

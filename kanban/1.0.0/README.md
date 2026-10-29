@@ -2,6 +2,8 @@
 
 A Quarkdown atom for easily creating kanban boards.
 
+![A kanban board with three columns](https://github.com/quarkdown-labs/atoms/blob/main/kanban/1.0.0/__images/preview.png?raw=true)
+
 ## Getting started
 
 - `.kanban` holds the board
