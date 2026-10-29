@@ -16,9 +16,11 @@ For more information about Quarkdown packages, see [wiki/Packages](https://quark
 1. Ensure your package works locally.
 2. Fork this repository.
 3. Add your package as `name/version` folder, e.g. `my-package/1.0.0`.
-4. Add at least one test case in your  `__tests` folder. See the [Testing](#testing) section for details.
-5. Open a pull request to this repository, following the PR template.
-6. Once merged, your package will be available to all Quarkdown users.
+4. It's recommended to have at least one test case in your  `__tests` folder. See the [Testing](#testing) section for details.
+5. Add a `README.md` file
+6. If you're publishing a template, add a `THUMBNAIL.webp` or `THUMBNAIL.png` file that shows a preview of the template.
+7. Open a pull request to this repository, following the PR template.
+8. Once merged, your package will be available to all Quarkdown users.
 
 Optimally, a submitted package's structure should be as follows:
 
@@ -30,6 +32,7 @@ my-package/
         main.qd
         ...other source files...
         README.md
+        THUMBNAIL.webp
 ```
 
 ## Testing
@@ -57,3 +60,7 @@ From a test case's `main.qd`, the package's main file can be included with a rel
 This repository strictly enforces frozen versions of packages. In order to update a package, a new version must be created.
 
 If you want to update `my-package` from version `1.0.0` to `1.1.0`, create a new folder `my-package/1.1.0` and copy the contents of `my-package/1.0.0` into it. Then, make your changes in the new folder, and follow the same [publishing steps](#publishing-a-package) to submit the new version.
+
+The only case where a package can be updated in place is for:
+- Updates to `README.md` or a `THUMBNAIL` file.
+- New test cases in the `__tests` folder.

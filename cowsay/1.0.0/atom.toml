@@ -4,5 +4,5 @@ version = "1.0.0"
 entrypoint = "main.qd"
 authors = [ "Quarkdown <https://quarkdown.com>" ]
 license = "Apache-2.0"
-description = "Display a message in a speech bubble with a cow."
+description = "A cow that says things."
 categories = ["fun"]

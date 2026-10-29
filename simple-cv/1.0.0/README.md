@@ -1,12 +1,14 @@
 # simple-cv
 
-A simple CV template.
+A compact, single-column CV template.
+
+## Getting started
 
 ```markdown
 # John Doe
 
 .contactinfo
-    -  +1 (xxx) xxx-xxxx
+    - +1 (xxx) xxx-xxxx
     - San Francisco, CA
     - [Website](https://example.com)
 
@@ -35,3 +37,21 @@ A simple CV template.
 - **Programming Languages:** Python, JavaScript, C++
 - **Technologies:** React, Node.js, Docker, Git
 ```
+
+## Functions
+
+#### `.contactinfo`
+
+A list of contact details, shown in a single row.
+
+#### `.edu {institution}`
+
+Requires `degree`, `dates` and `location`.
+
+#### `.work {title}`
+
+Requires `company`, `dates` and `location`.
+
+#### `.project {name}`
+
+Requires `dates`. `role` is optional.
