@@ -54,23 +54,37 @@ If you use Claude Code, the [`generating-package-images`](.claude/skills/generat
 
 ## Testing
 
-`__tests` folders (two underscores) contain test cases for the package. Each test case contains, at minimum, a `main.qd` file and an `expect.html` file. The `main.qd` file is compiled to HTML and asserted against the `expect.html` file.
+`__tests` folders (two underscores) contain test cases for the package. Each test case contains, at minimum, a `main.qd` file and a `test.py` file. The `main.qd` file is compiled and opened in a browser, and `test.py` makes assertions on the rendered page. Helpers shared by the test cases, if any, go in `__tests/shared.py`, and are imported with `from shared import ...`.
 
 ```
 __tests/
+    shared.py
     my-test-case/
         main.qd
-        expect.html
+        test.py
     my-other-test-case/
         main.qd
         ...other files...
-        expect.html
+        test.py
 ```
 
 From a test case's `main.qd`, the package's main file can be included with a relative path: `.include {../../main.qd}`.
 
-- To run all test cases in the repository, execute `scripts/test.sh` from the root of the repository.
-- To run a specific test case, pass its path to the script, e.g. `scripts/test.sh my-package/1.0.0/__tests/my-test-case`.
+`test.py`:
+
+```python
+from playwright.sync_api import expect
+
+
+def test_message_is_highlighted(page):
+    message = page.get_by_text("Hello")
+    expect(message).to_have_css("background-color", "rgb(255, 255, 0)")
+```
+
+- To run all test cases in the repository, execute `scripts/test.sh` from the root of the repository. [uv](https://docs.astral.sh/uv) and Google Chrome are required.
+- To run the test cases of a package, pass its path to the script, e.g. `scripts/test.sh my-package` for all of its versions, or `scripts/test.sh my-package/1.0.0` for one.
+- To run a specific test case, pass its path to the script, e.g. `scripts/test.sh my-package/1.0.0/__tests/my-test-case`. Any pytest option can be passed too.
+- To see the compiled output of a test case while writing assertions, add `--print-only`, e.g. `scripts/test.sh --print-only my-package/1.0.0/__tests/my-test-case`.
 
 ## Updating a package
 
@@ -80,7 +94,7 @@ If you want to update `my-package` from version `1.0.0` to `1.1.0`, create a new
 
 The only case where a package can be updated in place is for:
 - Updates to `README.md` or a `THUMBNAIL` file.
-- New test cases in the `__tests` folder.
+- New or updated test cases in the `__tests` folder.
 
 ## Deleting or renaming a package
 

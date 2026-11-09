@@ -1,93 +1,52 @@
 #!/usr/bin/env bash
-# Runs every atom test case and compares the compiled output against its expectation.
+# Runs atom test cases, asserting against their compiled output as rendered in a browser.
 #
 # A test case is a directory matching `<atom>/<version>/__tests/<case>/` containing:
-#   - main.qd      the document to compile
-#   - expect.html  the expected HTML output
+#   - main.qd  the document to compile
+#   - test.py  the assertions on the rendered document
 #
-# Usage: scripts/test.sh [--print-only] [test-dir...]
-# With no test directories given, all test cases in the repository are run.
-# With --print-only, the compiled output of each case is printed instead of being tested.
+# Usage: scripts/test.sh [--print-only] [dir...] [pytest-option...]
+# Each directory can be a test case, a package version (kanban/1.0.0) or a whole package (kanban),
+# whose test cases are all run. With none given, all test cases in the repository are run.
+# With --print-only, the compiled output of each test case is printed instead of being tested.
+# In this mode, only directories are accepted.
 
 set -uo pipefail
 
 readonly ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+readonly SCRIPTS="$ROOT/scripts"
 readonly COMPILE=(quarkdown c main.qd -r html --pipe --nowrap --allow global-read)
 
+# Prints the test case directories within the given directories, or within the repository if none are given.
 discover_tests() {
-    find "$ROOT" -mindepth 4 -maxdepth 4 -type d -path '*/__tests/*' | sort
-}
-
-# Canonical formatting options.
-readonly TIDY=(tidy -q --indent auto --wrap 0 --tidy-mark no --show-warnings no
-    --drop-empty-elements no --drop-empty-paras no --merge-divs no --merge-spans no
-    --custom-tags blocklevel)
-
-require_tidy() {
-    local version
-    version="$(tidy --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+' | head -1)"
-    if [[ -z "$version" || ${version%%.*} -lt 5 ]]; then
-        echo "::error::tidy-html5 >= 5 is required (found: ${version:-none})"
-        exit 2
-    fi
-}
-
-# Reformats stdin HTML canonically.
-normalize() {
-    "${TIDY[@]}" || [[ $? -eq 1 ]]
-}
-
-# Compiles the test case in the given directory, printing the result to stdout.
-compile() {
-    local dir="$1"
-    local name="${dir#"$ROOT"/}"
-    (cd "$dir" && "${COMPILE[@]}") || { echo "::error::$name: compilation failed"; return 1; }
-}
-
-run_test() {
-    local dir="$1"
-    local name="${dir#"$ROOT"/}"
-    local actual
-    actual="$(compile "$dir")" || return 1
-
-    if diff_output="$(diff -u <(normalize < "$dir/expect.html") <(normalize <<< "$actual"))"; then
-        echo "PASS $name"
-    else
-        echo "FAIL $name"
-        echo "$diff_output"
-        return 1
-    fi
+    find "${@:-$ROOT}" -name main.qd -path '*/__tests/*/main.qd' -exec dirname {} \; | sort
 }
 
 print_test() {
     local dir="$1"
     echo "=== ${dir#"$ROOT"/}"
-    compile "$dir"
+    (cd "$dir" && "${COMPILE[@]}")
+}
+
+print_tests() {
+    local failed=0 test
+    while IFS= read -r test; do
+        print_test "$test" || failed=$((failed + 1))
+    done < <(discover_tests "$@")
+    [[ $failed -eq 0 ]]
+}
+
+run_tests() {
+    QUARKDOWN="$(command -v quarkdown)" "$SCRIPTS/python.sh" -m pytest -c "$SCRIPTS/pytest.ini" --rootdir "$ROOT" "${@:-$ROOT}"
 }
 
 main() {
-    local runner=run_test
     if [[ ${1:-} == --print-only ]]; then
-        runner=print_test
         shift
+        print_tests "$@"
     else
-        require_tidy
+        run_tests "$@"
     fi
-
-    local tests=() test
-    if [[ $# -gt 0 ]]; then
-        tests=("$@")
-    else
-        while IFS= read -r test; do tests+=("$test"); done < <(discover_tests)
-    fi
-
-    local failed=0
-    for test in "${tests[@]}"; do
-        "$runner" "$test" || failed=$((failed + 1))
-    done
-
-    echo "${#tests[@]} run, $failed failed"
-    [[ $failed -eq 0 ]]
 }
 
 main "$@"

@@ -9,14 +9,12 @@ Layouts:
 """
 import io
 import sys
-from contextlib import contextmanager
-from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from threading import Thread
 
 from PIL import Image, ImageChops
 from playwright.sync_api import Page, sync_playwright
+
+from rendering import launch_browser, open_document, serve
 
 
 class Layout:
@@ -133,30 +131,14 @@ def layout_of(name: str, width: int) -> Layout:
     return layouts[name]()
 
 
-@contextmanager
-def serve(directory: Path):
-    """Serves a directory over HTTP, since paged.js fetches stylesheets with XHR, which file:// blocks."""
-    handler = partial(QuietHandler, directory=str(directory))
-    with ThreadingHTTPServer(("127.0.0.1", 0), handler) as server:
-        Thread(target=server.serve_forever, daemon=True).start()
-        yield f"http://127.0.0.1:{server.server_port}"
-        server.shutdown()
-
-
-class QuietHandler(SimpleHTTPRequestHandler):
-    def log_message(self, *args):
-        pass
-
-
 def main():
     name, html, package = sys.argv[1], Path(sys.argv[2]), Path(sys.argv[3])
     layout = layout_of(name, int(sys.argv[4]) if len(sys.argv) > 4 else 1000)
 
     with serve(html.parent) as url, sync_playwright() as p:
-        browser = p.chromium.launch(channel="chrome")
+        browser = launch_browser(p)
         page = browser.new_page(viewport=layout.viewport, device_scale_factor=layout.scale)
-        page.goto(f"{url}/{html.name}", wait_until="networkidle")
-        page.wait_for_function("window.isReady()")
+        open_document(page, url, html)
         layout.prepare(page)
         image = layout.capture(page)
         browser.close()

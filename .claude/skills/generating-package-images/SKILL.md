@@ -48,7 +48,7 @@ A demo document is compiled with the local `quarkdown` and screenshotted in head
    bash scripts/images/generate.sh kanban/1.0.0 <demo.qd> [viewport-width]
    ```
 
-   The viewport width only applies to packages and defaults to `1000`. Increase it when the content wraps, like kanban, which uses `1200`. The first run creates a Python venv with Pillow and Playwright in `~/.cache/quarkdown-atoms`.
+   The viewport width only applies to packages and defaults to `1000`. Increase it when the content wraps, like kanban, which uses `1200`. Python dependencies, from `scripts/requirements.txt`, are installed and cached by uv on the first run.
 
 3. Read the generated images and check them before reporting back.
 
@@ -65,4 +65,4 @@ A demo document is compiled with the local `quarkdown` and screenshotted in head
 - The images overwrite existing ones. Regenerate a committed thumbnail only when asked, or when the atom's output changed.
 - For packages, measure resolution in CSS pixels, not image pixels. A small demo produces a small image even at 2x. Don't add `zoom` or `transform` to make it bigger.
 - The package background color is sampled from the top-left pixel. If a demo has a colored page background, keep the margins around the content so that pixel is still background.
-- Requires `quarkdown` on `PATH` and Google Chrome installed.
+- Requires `quarkdown` on `PATH`, [uv](https://docs.astral.sh/uv) and Google Chrome installed.

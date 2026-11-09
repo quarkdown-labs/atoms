@@ -14,15 +14,8 @@
 set -euo pipefail
 
 readonly HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly VENV="${XDG_CACHE_HOME:-$HOME/.cache}/quarkdown-atoms/venv"
 
 package="$(cd "$1" && pwd)" demo="$(cd "$(dirname "$2")" && pwd)/$(basename "$2")" width="${3:-1000}"
-
-ensure_venv() {
-    [[ -x "$VENV/bin/python" ]] && return
-    python3 -m venv "$VENV"
-    "$VENV/bin/pip" install -q --disable-pip-version-check pillow playwright
-}
 
 # Prints the template doctype declared in atom.toml, or `package` if the atom is not a template.
 layout() {
@@ -40,8 +33,7 @@ compile() {
     find "$work/out" -name index.html | head -1
 }
 
-ensure_venv
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
-"$VENV/bin/python" -I "$HERE/capture.py" "$(layout)" "$(compile "$work")" "$package" "$width"
+"$HERE/../python.sh" "$HERE/capture.py" "$(layout)" "$(compile "$work")" "$package" "$width"

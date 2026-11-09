@@ -4,4 +4,5 @@
 **/@atoms/
 
 __test.qd
+__pycache__/
 .DS_Store
